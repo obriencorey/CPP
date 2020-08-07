@@ -8,8 +8,8 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         int length = nums.size();
-        int previous;
-        int next;
+        int previous;   //checks previous values
+        int next;       //checks next value
         int same = 0;   //increment if the same number is found
         
         if(!nums.empty()){
@@ -20,7 +20,7 @@ public:
 
                 if(previous == next){
                     nums.erase(nums.begin() + i);
-                    i--;
+                    i--;        //adjust for change in array size
                 }
 
                 previous = next;
