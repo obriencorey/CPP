@@ -6,20 +6,40 @@ class Solution {
 public:
     int mySqrt(int x) {
         
-        long long int difference;
-        long long int minDifference = INT_MAX;
-        int output;
+        long long int upper, mid, lower, num;
+        long long int diff, diff1, diff2;
         
-        for(long long int i = 0; i <= (x/2); i++){
-            difference = abs((x) - (i * i));
+        //initialize
+        upper = (x/2) + 1;
+        lower = 0;
+        mid = upper / 2;
+        
+        do{
+            diff = abs(x - (mid * mid));
             
-            if(difference < minDifference && i * i <= x){
-                minDifference = difference;
-                output = i;
+            mid -= 1;
+            diff1 = abs(x - (mid * mid));
+            
+            mid += 2;
+            diff2 = abs(x - (mid * mid));
+            
+            mid -= 2;
+            
+            if(x - (mid * mid) < 0){
+                upper = mid;
             }
-        }
+            else{
+                lower = mid;
+            }
+            
+            mid = (upper + lower) / 2;
+            
+            
+            
+        }while(!(diff < diff1 || diff < diff2));
         
-        return(x == 1? 1 : output);
+        
+        return(mid);
     }
 };
 
